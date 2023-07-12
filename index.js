@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 8700
+const PORT = process.env.PORT || 8800
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
@@ -31,3 +31,6 @@ app.use((req, res, next) => {
 app.listen(PORT, () => {
     console.log(`Backend Serer is running. ${PORT}`)
 })
+
+// Export the Express API
+module.exports = app;
