@@ -1,6 +1,10 @@
 const router = require("express").Router();
+const logger = require("../utils/winstonLog");
 
 router.post("/", async (req, res) => {
+    logger.info(req.query);
+    logger.info(req.headers);
+    logger.info(req.params);
     console.log(req.query)
     console.log(req.headers)
     console.log(req.params)
