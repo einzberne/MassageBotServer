@@ -3,6 +3,7 @@ const logger = require("./winstonLog");
 
 router.post("/", async (req, res) => {
   try {
+    console.log('bento')
     console.log(req.query);
     console.log(req.headers);
     console.log(req.params);
