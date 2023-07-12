@@ -16,6 +16,7 @@ app.listen(5000, () => {
     console.log("Running on port 5000.");
 });
 
+app.use(express.json())
 app.use("/api/bot", botRoute);
 // Export the Express API
 module.exports = app;
