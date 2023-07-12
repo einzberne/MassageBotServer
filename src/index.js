@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 8800
+const PORT = process.env.PORT || 8700
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
