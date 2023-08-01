@@ -7,6 +7,6 @@ exports.addMassager = async (req, res, next) => {
   massager.lastName = b.lastName;
   massager.features = b.features;
   massager.status = "complete";
-  massager.isActive = true; +
+  massager.isActive = true;
   await massager.save();
 };
