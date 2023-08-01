@@ -1,7 +1,3 @@
-const { 
-  v1: uuidv1,
-  v4: uuidv4,
-} = require('uuid');
 const Massager = require("../models/massager");
 
 exports.addMassager = async (req, res, next) => {
@@ -10,6 +6,7 @@ exports.addMassager = async (req, res, next) => {
   massager.firstName = b.firstName;
   massager.lastName = b.lastName;
   massager.features = b.features;
+  massager.status = "complete";
   massager.isActive = true; +
   await massager.save();
 };

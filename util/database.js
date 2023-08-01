@@ -1,8 +1,14 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('massage', 'root', 'hime4434', {
+const sequelize = new Sequelize('massage', process.env.DB_USER, process.env.DB_PASS, {
   dialect: 'mysql',
-  host: 'localhost'
+  host: process.env.DB_HOST,
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: process.env.DB_SSL=="true" ? true: false
+    },
+  },
 });
 
 module.exports = sequelize;

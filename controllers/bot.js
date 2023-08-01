@@ -1,4 +1,5 @@
 const Massager = require("../models/massager");
+const { v4: uuidv4 } = require('uuid');
 
 exports.bot = (req, res, next) => {
   if (req.body.events[0].type === "message") {
@@ -13,6 +14,7 @@ const addTempMassager = async (userId) => {
   Massager.create({
     userId: userId,
     uuid: uuidv4(),
+    status: "waiting"
   })
     .then((result) => {
       console.log(result);

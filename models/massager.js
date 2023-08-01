@@ -11,7 +11,7 @@ const Massager = sequelize.define('massager', {
   },
   userId: {
     type: Sequelize.STRING,
-    unique: 'constraint name'
+    // unique: 'constraint name'
   },
   uuid: {
     type: Sequelize.STRING,
@@ -34,6 +34,18 @@ const Massager = sequelize.define('massager', {
   features: {
     type: Sequelize.STRING,
   }
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['userId']
+        },
+        {
+          unique: true,
+          fields: ['uuid']
+      }
+    ]
 });
 
 module.exports = Massager;
