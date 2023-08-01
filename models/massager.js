@@ -13,10 +13,17 @@ const Massager = sequelize.define('massager', {
     type: Sequelize.STRING,
     unique: 'constraint name'
   },
+  uuid: {
+    type: Sequelize.STRING,
+    unique: 'constraint name'
+  },
   firstName: {
     type: Sequelize.STRING
   },
   lastName: {
+    type: Sequelize.STRING
+  },
+  status: {
     type: Sequelize.STRING
   },
   isActive: {

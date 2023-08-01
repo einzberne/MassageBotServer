@@ -4,21 +4,12 @@ const {
 } = require('uuid');
 const Massager = require("../models/massager");
 
-exports.addMassager = (req, res, next) => {
+exports.addMassager = async (req, res, next) => {
   let b = req.body;
-  Massager.create({
-    userId: uuidv4(),
-    firstName: b.firstName,
-    lastName: b.lastName,
-    isActive: true,
-    features: b.features,
-  })
-    .then((result) => {
-      console.log(result);
-      res.status(200).json(b.userId);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  const massager = await Massager.findOne({ where: { uuid: b.uuid } });
+  massager.firstName = b.firstName;
+  massager.lastName = b.lastName;
+  massager.features = b.features;
+  massager.isActive = true; +
+  await massager.save();
 };
