@@ -43,7 +43,7 @@ const sendRegisLink = async (userId, uuid) => {
         messages: [
           {
             type: "text",
-            text: `Please click this link to complete registeration ${process.env.ADMINWEB_URL}?id="${uuid}"`,
+            text: `Please click this link to complete registeration ${process.env.ADMINWEB_URL}?id=${uuid}`,
           },
         ],
       },
