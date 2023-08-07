@@ -15,7 +15,7 @@ const Massager = sequelize.define('massager', {
   },
   uuid: {
     type: Sequelize.STRING,
-    unique: 'constraint name'
+    // unique: 'constraint name'
   },
   firstName: {
     type: Sequelize.STRING

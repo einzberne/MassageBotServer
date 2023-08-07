@@ -2,6 +2,8 @@ const express = require("express");
 const { Sequelize } = require('sequelize');
 const sequelize = require('./util/database');
 const Massager = require("./models/massager");
+const Schedule = require("./models/schedule");
+const Clockin = require("./models/clockin");
 
 const app = express();
 const botRoute = require("./routes/bot");
@@ -11,7 +13,7 @@ const cors = require('cors');
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send("Express on Vercel");
+    res.send("Express app");
 });
 
 app.use(express.json())

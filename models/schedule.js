@@ -10,14 +10,21 @@ const Schedule = sequelize.define('schedule', {
     primaryKey: true
   },
   userId: {
-    type: Sequelize.STRING,
-    primaryKey: true
+    type: Sequelize.STRING
   },
   date: {
     type: Sequelize.DATEONLY
   },
   checkin : Sequelize.FLOAT,
   checkout : Sequelize.FLOAT
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['userId']
+        }
+    ]
 });
 
 module.exports = Schedule;

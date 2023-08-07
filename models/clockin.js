@@ -15,6 +15,14 @@ const Clockin = sequelize.define('clockin', {
   clockin: {
     type: Sequelize.DATE
   }
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['userId']
+        }
+    ]
 });
 
 module.exports = Clockin;
