@@ -6,9 +6,9 @@ const { v4: uuidv4 } = require('uuid');
 exports.bot = async (req, res, next) => {
   if (req.body.events[0].type === "message") {
     if (req.body.events[0].message.text === "Register") {
-      const massager = await Massager.findOne({ where: { uuid: b.uuid } });
+      const userId = req.body.events[0].source.userId;
+      const massager = await Massager.findOne({ where: { userId: userId } });
       if(!massager) {
-        const userId = req.body.events[0].source.userId;
         const uuid = await addTempMassager(userId);
         sendRegisLink(userId, uuid)
       } else {
