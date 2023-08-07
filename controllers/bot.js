@@ -1,18 +1,17 @@
 const Massager = require("../models/massager");
-const axios = require('axios');
-const { v4: uuidv4 } = require('uuid');
-
+const axios = require("axios");
+const { v4: uuidv4 } = require("uuid");
 
 exports.bot = async (req, res, next) => {
   if (req.body.events[0].type === "message") {
     if (req.body.events[0].message.text === "Register") {
       const userId = req.body.events[0].source.userId;
       const massager = await Massager.findOne({ where: { userId: userId } });
-      if(!massager) {
+      if (!massager) {
         const uuid = await addTempMassager(userId);
-        sendRegisLink(userId, uuid)
+        sendRegisLink(userId, uuid);
       } else {
-        sendRegisLink(massager.userId, massager.uuid)
+        sendRegisLink(massager.userId, massager.uuid);
       }
     }
   }
@@ -24,7 +23,7 @@ const addTempMassager = async (userId) => {
   Massager.create({
     userId: userId,
     uuid: uuid,
-    status: "waiting"
+    status: "waiting",
   })
     .then((result) => {
       console.log(result);
@@ -33,22 +32,32 @@ const addTempMassager = async (userId) => {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 const sendRegisLink = async (userId, uuid) => {
-  axios.post(`${process.env.LINE_URL}/message/push`, {
-    "to": userId,
-    "messages":[
-        {
-            "type":"text",
-            "text":`Please click this link to complete registeration ${process.env.ADMINWEB_URL}?id="${uuid}"`
-        }
-    ]
-})
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+  axios
+    .post(
+      `${process.env.LINE_URL}/message/push`,
+      {
+        to: userId,
+        messages: [
+          {
+            type: "text",
+            text: `Please click this link to complete registeration ${process.env.ADMINWEB_URL}?id="${uuid}"`,
+          },
+        ],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.LINE_ACCESS_TOKEN}`,
+        },
+      }
+    )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
